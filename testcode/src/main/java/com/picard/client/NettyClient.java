@@ -1,5 +1,9 @@
 package com.picard.client;
 
+import com.picard.client.handler.LoginResponseHandler;
+import com.picard.client.handler.MessageResponseHandler;
+import com.picard.codec.PacketDecoder;
+import com.picard.codec.PacketEncoder;
 import com.picard.protocol.MessageRequestPacket;
 import com.picard.protocol.PacketCodeC;
 import com.picard.util.LoginUtil;
@@ -39,7 +43,10 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
-                        ch.pipeline().addLast(new ClientHandler());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new LoginResponseHandler());
+                        ch.pipeline().addLast(new MessageResponseHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
 
@@ -76,8 +83,7 @@ public class NettyClient {
 
                     MessageRequestPacket packet = new MessageRequestPacket();
                     packet.setMessage(line);
-                    ByteBuf byteBuf = PacketCodeC.INSTANCE.encode(channel.alloc(), packet);
-                    channel.writeAndFlush(byteBuf);
+                    channel.writeAndFlush(packet);
                 }
             }
         }).start();

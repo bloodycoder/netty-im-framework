@@ -1,5 +1,11 @@
 package com.picard.server;
 
+import com.picard.client.handler.LoginResponseHandler;
+import com.picard.client.handler.MessageResponseHandler;
+import com.picard.codec.PacketDecoder;
+import com.picard.codec.PacketEncoder;
+import com.picard.server.handler.LoginRequestHandler;
+import com.picard.server.handler.MessageRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -26,7 +32,10 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(new MessageRequestHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
 
