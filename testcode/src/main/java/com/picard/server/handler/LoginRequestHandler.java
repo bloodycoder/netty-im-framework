@@ -1,5 +1,6 @@
 package com.picard.server.handler;
 
+import com.picard.util.LoginUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import com.picard.protocol.LoginRequestPacket;
@@ -15,6 +16,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
         loginResponsePacket.setVersion(loginRequestPacket.getVersion());
         if (valid(loginRequestPacket)) {
+            LoginUtil.markAsLogin(ctx.channel());
             loginResponsePacket.setSuccess(true);
             System.out.println(new Date() + ": 登录成功!");
         } else {
