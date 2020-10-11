@@ -4,11 +4,11 @@ import com.picard.client.handler.LoginResponseHandler;
 import com.picard.client.handler.MessageResponseHandler;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
+import com.picard.codec.Spliter;
+import com.picard.protocol.LoginRequestPacket;
 import com.picard.protocol.MessageRequestPacket;
-import com.picard.protocol.PacketCodeC;
-import com.picard.util.LoginUtil;
+import com.picard.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -74,18 +74,33 @@ public class NettyClient {
         });
     }
     private static void startConsoleThread(Channel channel) {
+        Scanner sc = new Scanner(System.in);
+        LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
         new Thread(() -> {
             while (!Thread.interrupted()) {
-                if (LoginUtil.hasLogin(channel)) {
-                    System.out.println("输入消息发送至服务端: ");
-                    Scanner sc = new Scanner(System.in);
-                    String line = sc.nextLine();
+                if (!SessionUtil.hasLogin(channel)) {
+                    System.out.print("输入用户名登录: ");
+                    String username = sc.nextLine();
+                    loginRequestPacket.setUserName(username);
 
-                    MessageRequestPacket packet = new MessageRequestPacket();
-                    packet.setMessage(line);
-                    channel.writeAndFlush(packet);
+                    // 密码使用默认的
+                    loginRequestPacket.setPassword("pwd");
+
+                    // 发送登录数据包
+                    channel.writeAndFlush(loginRequestPacket);
+                    waitForLoginResponse();
+                } else {
+                    String toUserId = sc.nextLine();
+                    String message = sc.nextLine();
+                    channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
                 }
             }
         }).start();
+    }
+    private static void waitForLoginResponse() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+        }
     }
 }
