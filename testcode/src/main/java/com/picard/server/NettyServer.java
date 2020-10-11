@@ -4,6 +4,7 @@ import com.picard.client.handler.LoginResponseHandler;
 import com.picard.client.handler.MessageResponseHandler;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
+import com.picard.server.handler.AuthHandler;
 import com.picard.server.handler.LoginRequestHandler;
 import com.picard.server.handler.MessageRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
@@ -34,6 +35,7 @@ public class NettyServer {
                     protected void initChannel(NioSocketChannel ch) {
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(new AuthHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
