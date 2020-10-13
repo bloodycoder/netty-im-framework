@@ -5,6 +5,7 @@ import com.picard.client.handler.MessageResponseHandler;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
 import com.picard.codec.Spliter;
+import com.picard.server.handler.CreateGroupRequestHandler;
 import com.picard.server.handler.LoginRequestHandler;
 import com.picard.server.handler.MessageRequestHandler;
 import com.picard.server.handler.AuthHandler;
@@ -37,6 +38,7 @@ public class NettyServer {
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(new AuthHandler());
+                        ch.pipeline().addLast(new CreateGroupRequestHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
