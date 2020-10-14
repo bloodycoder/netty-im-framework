@@ -5,7 +5,9 @@ import com.picard.client.console.LoginConsoleCommand;
 import com.picard.client.handler.*;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
+import com.picard.codec.Spliter;
 import com.picard.protocol.packet.LoginRequestPacket;
+import com.picard.protocol.packet.SendGroupMessageNotifyPacket;
 import com.picard.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -42,15 +44,17 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecoder());
-                        ch.pipeline().addLast(new LoginResponseHandler());
-                        ch.pipeline().addLast(new MessageResponseHandler());
-                        ch.pipeline().addLast(new CreateGroupResponseHandler());
-                        ch.pipeline().addLast(new JoinGroupResponseHandler());
-                        ch.pipeline().addLast(new ListGroupMembersResponseHandler());
-                        ch.pipeline().addLast(new JoinGroupNotifyHandler());
-                        ch.pipeline().addLast(new QuitGroupResponseHandler());
-                        ch.pipeline().addLast(new LogoutResponseHandler());
+                        ch.pipeline().addLast(LoginResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(MessageResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(CreateGroupResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(JoinGroupResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(ListGroupMembersResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(JoinGroupNotifyHandler.INSTANCE);
+                        ch.pipeline().addLast(QuitGroupResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(LogoutResponseHandler.INSTANCE);
+                        ch.pipeline().addLast(SendGroupMessageNotifyHandler.INSTANCE);
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });

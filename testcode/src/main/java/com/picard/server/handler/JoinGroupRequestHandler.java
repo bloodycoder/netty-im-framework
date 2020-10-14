@@ -1,13 +1,16 @@
 package com.picard.server.handler;
 import com.picard.protocol.packet.JoinGroupNotifyPacket;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import com.picard.protocol.packet.JoinGroupRequestPacket;
 import com.picard.protocol.packet.JoinGroupResponsePacket;
 import com.picard.util.SessionUtil;
-
+@ChannelHandler.Sharable
 public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGroupRequestPacket> {
+    public static final JoinGroupRequestHandler INSTANCE = new JoinGroupRequestHandler();
+    protected JoinGroupRequestHandler(){}
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, JoinGroupRequestPacket requestPacket) {
         // 1. 获取群对应的 channelGroup，然后将当前用户的 channel 添加进去

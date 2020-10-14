@@ -30,5 +30,9 @@ public interface Command {
 
     Byte QUIT_GROUP_RESPONSE = 14;
 
+    Byte SEND_GROUP_MESSAGE_REQUEST = 15;
+
+    Byte SEND_GROUP_MESSAGE_NOTIFY = 16;
+
     Byte JOIN_GROUP_NOTIFY = 100;
 }
