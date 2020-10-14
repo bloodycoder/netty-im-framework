@@ -1,9 +1,10 @@
 package com.picard.server.handler;
+import com.picard.protocol.packet.JoinGroupNotifyPacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
-import com.picard.protocol.JoinGroupRequestPacket;
-import com.picard.protocol.JoinGroupResponsePacket;
+import com.picard.protocol.packet.JoinGroupRequestPacket;
+import com.picard.protocol.packet.JoinGroupResponsePacket;
 import com.picard.util.SessionUtil;
 
 public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGroupRequestPacket> {
@@ -16,9 +17,14 @@ public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGro
 
         // 2. 构造加群响应发送给客户端
         JoinGroupResponsePacket responsePacket = new JoinGroupResponsePacket();
-
         responsePacket.setSuccess(true);
         responsePacket.setGroupId(groupId);
         ctx.channel().writeAndFlush(responsePacket);
+        //channelGroup.writeAndFlush(responsePacket);
+        // 3 notify
+        JoinGroupNotifyPacket notifyAll = new JoinGroupNotifyPacket();
+        notifyAll.setGroupId(groupId);
+        notifyAll.setUserId(SessionUtil.getSession(ctx.channel()).getUserId());
+        channelGroup.writeAndFlush(notifyAll);
     }
 }

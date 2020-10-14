@@ -1,7 +1,7 @@
 package com.picard.client.console;
 
 import io.netty.channel.Channel;
-import com.picard.protocol.QuitGroupRequestPacket;
+import com.picard.protocol.packet.QuitGroupRequestPacket;
 
 import java.util.Scanner;
 

@@ -5,8 +5,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
-import com.picard.protocol.CreateGroupRequestPacket;
-import com.picard.protocol.CreateGroupResponsePacket;
+import com.picard.protocol.packet.CreateGroupRequestPacket;
+import com.picard.protocol.packet.CreateGroupResponsePacket;
 import com.picard.util.IDUtil;
 import com.picard.util.SessionUtil;
 

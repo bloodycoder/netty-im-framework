@@ -2,9 +2,7 @@ package com.picard.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.MessageResponsePacket;
-
-import java.util.Date;
+import com.picard.protocol.packet.MessageResponsePacket;
 
 public class MessageResponseHandler extends SimpleChannelInboundHandler<MessageResponsePacket> {
     @Override

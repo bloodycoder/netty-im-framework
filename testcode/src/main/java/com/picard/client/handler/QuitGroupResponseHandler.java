@@ -2,7 +2,7 @@ package com.picard.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.QuitGroupResponsePacket;
+import com.picard.protocol.packet.QuitGroupResponsePacket;
 
 
 public class QuitGroupResponseHandler extends SimpleChannelInboundHandler<QuitGroupResponsePacket> {

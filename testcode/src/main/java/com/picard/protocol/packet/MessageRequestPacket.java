@@ -1,4 +1,5 @@
-package com.picard.protocol;
+package com.picard.protocol.packet;
+import com.picard.protocol.Packet;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

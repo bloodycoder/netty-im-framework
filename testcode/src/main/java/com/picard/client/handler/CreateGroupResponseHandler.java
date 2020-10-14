@@ -3,7 +3,7 @@ package com.picard.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.CreateGroupResponsePacket;
+import com.picard.protocol.packet.CreateGroupResponsePacket;
 
 public class CreateGroupResponseHandler extends SimpleChannelInboundHandler<CreateGroupResponsePacket> {
 

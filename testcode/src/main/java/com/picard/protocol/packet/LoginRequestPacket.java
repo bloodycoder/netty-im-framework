@@ -1,5 +1,6 @@
-package com.picard.protocol;
+package com.picard.protocol.packet;
 
+import com.picard.protocol.Packet;
 import lombok.Data;
 
 import static com.picard.protocol.Command.LOGIN_REQUEST;

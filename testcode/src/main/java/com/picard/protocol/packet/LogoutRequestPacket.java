@@ -1,4 +1,4 @@
-package com.picard.protocol;
+package com.picard.protocol.packet;
 
 import lombok.Data;
 import com.picard.protocol.Packet;

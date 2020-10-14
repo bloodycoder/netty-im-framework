@@ -1,31 +1,23 @@
-package com.picard.protocol;
+package com.picard.protocol.packet;
 
 import lombok.Data;
 import com.picard.protocol.Packet;
 
-import static com.picard.protocol.Command.QUIT_GROUP_RESPONSE;
+import static com.picard.protocol.Command.LOGOUT_RESPONSE;
+
 
 @Data
-public class QuitGroupResponsePacket extends Packet {
-
-    private String groupId;
+public class LogoutResponsePacket extends Packet {
 
     private boolean success;
 
     private String reason;
-    public QuitGroupResponsePacket(){}
+
+    public LogoutResponsePacket(){}
     @Override
     public Byte getCommand() {
 
-        return QUIT_GROUP_RESPONSE;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+        return LOGOUT_RESPONSE;
     }
 
     public boolean isSuccess() {

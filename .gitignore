@@ -23,3 +23,6 @@
 hs_err_pid*
 testcode/.idea/workspace.xml
 testcode/.idea/workspace.xml
+testcode/.idea/uiDesigner.xml
+*.xml
+testcode/.idea/workspace.xml
