@@ -3,21 +3,28 @@ package com.picard.protocol;
 import lombok.Data;
 import com.picard.protocol.Packet;
 
-import static com.picard.protocol.Command.LOGOUT_RESPONSE;
-
+import static com.picard.protocol.Command.JOIN_GROUP_RESPONSE;
 
 @Data
-public class LogoutResponsePacket extends Packet {
+public class JoinGroupResponsePacket extends Packet {
+    private String groupId;
 
     private boolean success;
 
     private String reason;
-
-    public LogoutResponsePacket(){}
+    public JoinGroupResponsePacket(){}
     @Override
     public Byte getCommand() {
 
-        return LOGOUT_RESPONSE;
+        return JOIN_GROUP_RESPONSE;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public boolean isSuccess() {

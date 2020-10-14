@@ -5,10 +5,7 @@ import com.picard.client.handler.MessageResponseHandler;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
 import com.picard.codec.Spliter;
-import com.picard.server.handler.CreateGroupRequestHandler;
-import com.picard.server.handler.LoginRequestHandler;
-import com.picard.server.handler.MessageRequestHandler;
-import com.picard.server.handler.AuthHandler;
+import com.picard.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -39,6 +36,10 @@ public class NettyServer {
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(new AuthHandler());
                         ch.pipeline().addLast(new CreateGroupRequestHandler());
+                        ch.pipeline().addLast(new JoinGroupRequestHandler());
+                        ch.pipeline().addLast(new ListGroupMembersRequestHandler());
+                        ch.pipeline().addLast(new QuitGroupRequestHandler());
+                        ch.pipeline().addLast(new LogoutRequestHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
