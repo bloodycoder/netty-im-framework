@@ -2,12 +2,11 @@ package com.picard.client;
 
 import com.picard.client.console.ConsoleCommandManager;
 import com.picard.client.console.LoginConsoleCommand;
-import com.picard.client.handler.CreateGroupResponseHandler;
-import com.picard.client.handler.LoginResponseHandler;
-import com.picard.client.handler.MessageResponseHandler;
+import com.picard.client.handler.*;
 import com.picard.codec.PacketDecoder;
 import com.picard.codec.PacketEncoder;
 import com.picard.codec.Spliter;
+import com.picard.protocol.JoinGroupResponsePacket;
 import com.picard.protocol.LoginRequestPacket;
 import com.picard.protocol.MessageRequestPacket;
 import com.picard.util.SessionUtil;
@@ -50,6 +49,10 @@ public class NettyClient {
                         ch.pipeline().addLast(new LoginResponseHandler());
                         ch.pipeline().addLast(new MessageResponseHandler());
                         ch.pipeline().addLast(new CreateGroupResponseHandler());
+                        ch.pipeline().addLast(new JoinGroupResponseHandler());
+                        ch.pipeline().addLast(new ListGroupMembersResponseHandler());
+                        ch.pipeline().addLast(new QuitGroupResponseHandler());
+                        ch.pipeline().addLast(new LogoutResponseHandler());
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
