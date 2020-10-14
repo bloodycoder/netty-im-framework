@@ -1,6 +1,7 @@
 package com.picard.server.handler;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
@@ -11,8 +12,10 @@ import com.picard.util.SessionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@ChannelHandler.Sharable
 public class ListGroupMembersRequestHandler extends SimpleChannelInboundHandler<ListGroupMembersRequestPacket> {
+    public static final ListGroupMembersRequestHandler INSTANCE = new ListGroupMembersRequestHandler();
+    protected ListGroupMembersRequestHandler(){}
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ListGroupMembersRequestPacket requestPacket) {
         // 1. 获取群的 ChannelGroup

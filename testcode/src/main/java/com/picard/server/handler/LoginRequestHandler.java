@@ -1,6 +1,7 @@
 package com.picard.server.handler;
 
 import com.picard.session.Session;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import com.picard.protocol.packet.LoginRequestPacket;
@@ -9,8 +10,10 @@ import com.picard.util.SessionUtil;
 import java.util.Date;
 import java.util.UUID;
 
+@ChannelHandler.Sharable
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
-
+    public static final LoginRequestHandler INSTANCE = new LoginRequestHandler();
+    protected LoginRequestHandler(){}
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) {
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
