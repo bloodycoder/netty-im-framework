@@ -1,7 +1,7 @@
 package com.picard.protocol;
 
+import com.picard.protocol.packet.*;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 import com.picard.serialize.Serializer;
 import com.picard.serialize.JSONSerializer;
 
@@ -35,6 +35,7 @@ public class PacketCodeC {
         packetTypeMap.put(LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
         packetTypeMap.put(QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
         packetTypeMap.put(QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
+        packetTypeMap.put(JOIN_GROUP_NOTIFY, JoinGroupNotifyPacket.class);
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);

@@ -1,7 +1,7 @@
 package com.picard.client.console;
 
 import io.netty.channel.Channel;
-import com.picard.protocol.MessageRequestPacket;
+import com.picard.protocol.packet.MessageRequestPacket;
 
 import java.util.Scanner;
 

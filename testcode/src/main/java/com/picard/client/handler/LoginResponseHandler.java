@@ -4,7 +4,7 @@ import com.picard.session.Session;
 import com.picard.util.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.LoginResponsePacket;
+import com.picard.protocol.packet.LoginResponsePacket;
 
 public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginResponsePacket> {
 

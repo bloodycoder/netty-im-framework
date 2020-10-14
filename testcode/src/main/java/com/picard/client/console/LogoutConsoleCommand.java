@@ -2,7 +2,7 @@ package com.picard.client.console;
 
 
 import io.netty.channel.Channel;
-import com.picard.protocol.LogoutRequestPacket;
+import com.picard.protocol.packet.LogoutRequestPacket;
 
 import java.util.Scanner;
 

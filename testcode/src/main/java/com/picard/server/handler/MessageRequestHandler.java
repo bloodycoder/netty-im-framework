@@ -5,10 +5,8 @@ import com.picard.util.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.MessageRequestPacket;
-import com.picard.protocol.MessageResponsePacket;
-
-import java.util.Date;
+import com.picard.protocol.packet.MessageRequestPacket;
+import com.picard.protocol.packet.MessageResponsePacket;
 
 public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
     @Override

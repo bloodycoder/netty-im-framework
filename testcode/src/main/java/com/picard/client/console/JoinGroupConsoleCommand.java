@@ -1,7 +1,7 @@
 package com.picard.client.console;
 
 import io.netty.channel.Channel;
-import com.picard.protocol.JoinGroupRequestPacket;
+import com.picard.protocol.packet.JoinGroupRequestPacket;
 
 import java.util.Scanner;
 

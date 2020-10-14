@@ -1,19 +1,19 @@
-package com.picard.protocol;
+package com.picard.protocol.packet;
 
 import lombok.Data;
 import com.picard.protocol.Packet;
 
-import static com.picard.protocol.Command.JOIN_GROUP_REQUEST;
+import static com.picard.protocol.Command.QUIT_GROUP_REQUEST;
 
 @Data
-public class JoinGroupRequestPacket extends Packet {
+public class QuitGroupRequestPacket extends Packet {
 
     private String groupId;
 
     @Override
     public Byte getCommand() {
 
-        return JOIN_GROUP_REQUEST;
+        return QUIT_GROUP_REQUEST;
     }
 
     public String getGroupId() {

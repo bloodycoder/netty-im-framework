@@ -3,8 +3,8 @@ package com.picard.server.handler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
-import com.picard.protocol.QuitGroupRequestPacket;
-import com.picard.protocol.QuitGroupResponsePacket;
+import com.picard.protocol.packet.QuitGroupRequestPacket;
+import com.picard.protocol.packet.QuitGroupResponsePacket;
 import com.picard.util.SessionUtil;
 
 public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGroupRequestPacket> {
@@ -20,6 +20,10 @@ public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGro
 
         responsePacket.setGroupId(requestPacket.getGroupId());
         responsePacket.setSuccess(true);
+        // 3. 检查是否为空
+        if(channelGroup.isEmpty()){
+            SessionUtil.unbindChannelGroup(groupId);
+        }
         ctx.channel().writeAndFlush(responsePacket);
 
     }

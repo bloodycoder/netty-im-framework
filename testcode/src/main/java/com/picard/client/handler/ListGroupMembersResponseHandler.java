@@ -2,7 +2,7 @@ package com.picard.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import com.picard.protocol.ListGroupMembersResponsePacket;
+import com.picard.protocol.packet.ListGroupMembersResponsePacket;
 
 public class ListGroupMembersResponseHandler extends SimpleChannelInboundHandler<ListGroupMembersResponsePacket> {
 
