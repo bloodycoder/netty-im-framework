@@ -1,6 +1,7 @@
 package com.picard.server.handler;
 
 import com.picard.protocol.Packet;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.picard.protocol.Command.*;
-
+@ChannelHandler.Sharable
 public class IMHandler extends SimpleChannelInboundHandler<Packet> {
     public static final IMHandler INSTANCE = new IMHandler();
 

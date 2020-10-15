@@ -35,4 +35,6 @@ public interface Command {
     Byte SEND_GROUP_MESSAGE_NOTIFY = 16;
 
     Byte JOIN_GROUP_NOTIFY = 100;
+
+    Byte HEART_BEAT_ROUNDTRIP = 101;
 }
