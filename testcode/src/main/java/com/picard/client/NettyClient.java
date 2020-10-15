@@ -56,6 +56,7 @@ public class NettyClient {
                         ch.pipeline().addLast(LogoutResponseHandler.INSTANCE);
                         ch.pipeline().addLast(SendGroupMessageNotifyHandler.INSTANCE);
                         ch.pipeline().addLast(new PacketEncoder());
+                        ch.pipeline().addLast(new HeartBeatTimerHandler());
                     }
                 });
 

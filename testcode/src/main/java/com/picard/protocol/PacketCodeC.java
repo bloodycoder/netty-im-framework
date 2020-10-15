@@ -38,6 +38,7 @@ public class PacketCodeC {
         packetTypeMap.put(JOIN_GROUP_NOTIFY, JoinGroupNotifyPacket.class);
         packetTypeMap.put(SEND_GROUP_MESSAGE_REQUEST,SendGroupMessageRequestPacket.class);
         packetTypeMap.put(SEND_GROUP_MESSAGE_NOTIFY,SendGroupMessageNotifyPacket.class);
+        packetTypeMap.put(HEART_BEAT_ROUNDTRIP,HeartBeatRequestPacket.class);
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
